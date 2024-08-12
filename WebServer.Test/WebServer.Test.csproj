@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PublishAot>true</PublishAot>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Not entirely sure what this does -->
+    <None Remove="Views\**" />
+    <!-- Remove all Razor pages from being compiled in project -->
+    <Content Remove="Views/**.cshtml" />
+    <!-- Copy everything from views into output directory-->
+    <None Include="Views/**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <!-- Do not compile contents -->
+    <Compile Remove="Views\**" />
+    <!-- But, inlude in Editor -->
+    <Content Include="Views\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebServer\SimpleWebServer.csproj" />
+  </ItemGroup>
+
+</Project>
