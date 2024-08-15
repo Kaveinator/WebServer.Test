@@ -7,25 +7,23 @@
     <Nullable>enable</Nullable>
     <PublishAot>true</PublishAot>
     <InvariantGlobalization>true</InvariantGlobalization>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- Not entirely sure what this does -->
+    <!-- Remove all site contents and Razor pages from being compiled -->
     <None Remove="Views\**" />
-    <!-- Remove all Razor pages from being compiled in project -->
     <Content Remove="Views/**.cshtml" />
+    <!-- But, inlude in Editor/Solution Explorer -->
+    <Compile Remove="Views\**" />
+    <Content Include="Views\**" />
     <!-- Copy everything from views into output directory-->
     <None Include="Views/**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <!-- Do not compile contents -->
-    <Compile Remove="Views\**" />
-    <!-- But, inlude in Editor -->
-    <Content Include="Views\**" />
   </ItemGroup>
-
+  <!-- Web Server assembly reference -->
   <ItemGroup>
-    <ProjectReference Include="..\WebServer\SimpleWebServer.csproj" />
+    <ProjectReference Include="..\WebServer\WebServer.csproj" />
   </ItemGroup>
-
 </Project>

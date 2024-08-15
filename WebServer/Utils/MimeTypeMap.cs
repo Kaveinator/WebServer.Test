@@ -13,7 +13,7 @@ namespace WebServer.Utils
     {
         private const string Dot = ".";
         private const string QuestionMark = "?";
-        private const string DefaultMimeType = "application/octet-stream";
+        private const string DefaultMimeType = "text/plain";
         private static readonly Lazy<IDictionary<string, string>> _mappings = new Lazy<IDictionary<string, string>>(BuildMappings);
         public static string HtmlDocument = GetMimeType(".html");
 
@@ -218,6 +218,7 @@ namespace WebServer.Utils
                 {".htc", "text/x-component"},
                 {".htm", "text/html"},
                 {".html", "text/html"},
+                {".cshtml", "text/html"},
                 {".htt", "text/webviewhtml"},
                 {".hxa", "application/xml"},
                 {".hxc", "application/xml"},

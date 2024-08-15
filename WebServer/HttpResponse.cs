@@ -14,6 +14,7 @@ namespace WebServer {
             get => Encoding.UTF8.GetString(Content);
             set => Content = Encoding.UTF8.GetBytes(value);
         }
+        public Dictionary<string, string?> Headers = new Dictionary<string, string?>();
 
         public HttpResponse() { }
 

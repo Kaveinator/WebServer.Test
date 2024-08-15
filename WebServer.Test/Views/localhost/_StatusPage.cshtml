@@ -1,0 +1,16 @@
+@using RazorLight
+@inherits TemplatePage<WebServer.Models.StatusPageModel>
+@model WebServer.Models.StatusPageModel
+@{
+    Layout = @"_Layout.cshtml";
+    ViewBag.Title = $"{Model.StatusCodeAsUShort} - {Model.Header}";
+}
+<div class="ice centerize">
+    <div style="font-size: 2em;">@Model.Header</div>
+    <span>@Model.Details</span>
+    @if (Model.Exception != null) {
+        <div style="padding: 5px; border-radius: 5px; background: rgba(0, 0, 0, 0.5); box-shadow: inset rgb(255 255 255 / 20%) 0 0 0 2px; width: auto; max-width: 95%; text-align: left;">
+            <pre style="margin: 0;">@Model.Exception</pre>
+        </div>
+    }
+</div>

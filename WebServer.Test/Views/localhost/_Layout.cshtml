@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewBag.Title</title>
+    <link href="https://kavemans.dev/src/styles/framework.css" type="text/css" rel="stylesheet" />
+    <link href="https://kavemans.dev/src/styles/common.css" type="text/css" rel="stylesheet" />
+    <link href="https://kavemans.dev/src/styles/main.css" type="text/css" rel="stylesheet" />
+    @RenderSection("Styles", required: false)
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-image: url('https://kavemans.dev/src/images/Chalkboard.webp');
+            background-size: cover;
+            background-position: center center;
+        }
+
+        .ice {
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="centerize stickyFooter">
+    @RenderBody()
+</body>
+</html>
