@@ -24,6 +24,7 @@ namespace WebServer {
         public delegate Task<HttpResponse?> Callback(HttpListenerContext context, CachedResponse? cache);
 
         Dictionary<string, Dictionary<Regex, Callback>> HttpCallbacks = new Dictionary<string, Dictionary<Regex, Callback>>();
+        public List<AreaBase> RegisteredAreas = new List<AreaBase>();
         Dictionary<string, RazorLightEngine> RazorEngines = new Dictionary<string, RazorLightEngine>();
         public readonly RazorLightEngine DefaultRazorEngine;
         /* Instead of three directories (from previous render engine)
@@ -356,6 +357,18 @@ namespace WebServer {
                 }
             }
             return removeCount > 0;
+        }
+
+        public bool TryRegisterArea<T>(Func<T>? areaInitilizer, out T area) where T : AreaBase {
+            area = areaInitilizer?.Invoke() ?? default;
+            if (area == null) return false;
+            RegisteredAreas.Add(area);
+            return true;
+        }
+
+        public void RegisterArea<T>(Func<T>? areaInitializer, out T area) where T : AreaBase {
+            if (!TryRegisterArea(areaInitializer, out area))
+                throw new Exception($"Failed to bind {typeof(T).FullName}! Is your initializer returning a valid area?");
         }
     }
 }
