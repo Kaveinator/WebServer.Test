@@ -129,9 +129,6 @@ namespace WebServer {
                         response = cache;
                     else if (cache.UpdateMethod != null)
                         response = await cache.UpdateMethod(context, cache);
-                    else {
-                        
-                    }
                 }
 
                 // Create reponse timeout logic, this will return a string to the client but an exception on the server
@@ -186,7 +183,7 @@ namespace WebServer {
                                 bool fileExists = File.Exists(fullpath);
                                 if (!fileExists) continue;
 
-                                cache = cache ?? new CachedResponse(this, null);
+                                cache ??= new CachedResponse(this, null);
                                 cache.StatusCode = HttpStatusCode.OK;
                                 cache.ContentString = await razorEngine.CompileRenderAsync<object?>(razorPath, null);
                                 cache.ContentType = "text/html";
@@ -212,7 +209,7 @@ namespace WebServer {
                     };
                 }
                 catch (Exception ex) {
-                    StatusPageModel statusModel = new StatusPageModel(HttpStatusCode.InternalServerError) {
+                    statusPageModel = new StatusPageModel(HttpStatusCode.InternalServerError) {
                         Exception = ex
                     };
                 }
